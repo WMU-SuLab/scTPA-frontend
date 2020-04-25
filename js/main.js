@@ -10,14 +10,7 @@ window.onload = function () {
           if (emailDress != ""){
               var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
               if (!reg.test(emailDress)){
-                  //alert("Please recheck your email address！");
-                  //alert("No hits found")
-                  swal({
-                      title:"No hits found",
-                      text:"sctpa.bio-data.cn/sctpa",
-                      //type:"error",
-                      allowEscapeKey: true
-                  })
+                  alert("Please recheck your email address！");
               }else {
                   $.ajax({
                       url:"http://34.210.231.18:8080/search?email="+emailDress,
@@ -26,14 +19,7 @@ window.onload = function () {
                       success:function (data) {
                           if (data==""){
                               $("#tabletest").html("");
-                              //alert("Please enter your email address correctly");
-                              //alert("No hits found")
-                              swal({
-                                  title:"No hits found",
-                                  text:"sctpa.bio-data.cn/sctpa",
-                                  //type:"error",
-                                  allowEscapeKey: true
-                              })
+                              alert("Please enter your email address correctly");
                           }else {
                               $("#tabletest").append('<tr>'+'<th>'+"job ID"+'</th>'+'<th>'+"Date"+'</th>'+'<th>'+"Status"+'</th>'+'<th>'+"Result"+'</th>'+'</tr>');
                               for (var i=0;i<data.length;i++){
@@ -47,16 +33,9 @@ window.onload = function () {
 
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          //alert(XMLHttpRequest.status);
-                          //alert(XMLHttpRequest.readyState);
-                          //alert(textStatus);
-                          //alert("No hits found")
-                          swal({
-                              title:"No hits found",
-                              text:"sctpa.bio-data.cn/sctpa",
-                              //type:"error",
-                              allowEscapeKey: true
-                          })
+                          alert(XMLHttpRequest.status);
+                          alert(XMLHttpRequest.readyState);
+                          alert(textStatus);
                       }
 
                   })
@@ -69,14 +48,7 @@ window.onload = function () {
           if (jobId!=""){
               var numRegex =/^[0-9]*$/;
               if (!numRegex.test(jobId)){
-                  //alert("only number!")
-                  //alert("No hits found")
-                  swal({
-                      title:"No hits found",
-                      text:"sctpa.bio-data.cn/sctpa",
-                      //type:"error",
-                      allowEscapeKey: true
-                  })
+                  alert("only number!")
               }else {
 
                   $.ajax({
@@ -86,14 +58,7 @@ window.onload = function () {
                       success:function (data) {
                           if (data==""){
                               $("#tabletest").html("");
-                              //alert("Please enter your jobId correctly");
-                              //alert("No hits found")
-                              swal({
-                                  title:"sctpa.bio-data.cn/sctpa",
-                                  text:"No hits found",
-                                  //type:"error",
-                                  allowEscapeKey: true
-                              })
+                              alert("Please enter your jobId correctly");
                               $("#exampleInputEmail1").val="";
                           }else {
                               $("#tabletest").append('<tr>'+'<th>'+"job ID"+'</th>'+'<th>'+"Date"+'</th>'+'<th>'+"Status"+'</th>'+'<th>'+"Result"+'</th>'+'</tr>');
@@ -108,20 +73,16 @@ window.onload = function () {
                           }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          //alert(XMLHttpRequest.status);
-                          //alert(XMLHttpRequest.readyState);
-                          //alert(textStatus);
-                          //alert("No hits found")
-                          swal({
-                              title:"No hits found",
-                              text:"sctpa.bio-data.cn/sctpa",
-                              //type:"error",
-                              allowEscapeKey: true
-                          })
+                          alert(XMLHttpRequest.status);
+                          alert(XMLHttpRequest.readyState);
+                          alert(textStatus);
                       }
 
                   })
               }
+
+
+
 
           }
 
