@@ -7,4 +7,4 @@ scTPA is a web tool for single-cell transcriptome analysis and annotation based 
 3. [clustergrammer](http://amp.pharm.mssm.edu/clustergrammer/) for expression profile heatmap
 
 ## workflow
-![workflow of scTPA](https://github.com/ZhangBuDiu/scTPA-web/blob/master/manual/workflow.png)
+![workflow of scTPA](https://github.com/ZhangBuDiu/scTPA-frontend/blob/master/manual/workflow.png)
