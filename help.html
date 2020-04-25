@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scTPA - Help</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <script type="text/javascript" src='js/main.js'></script>
+    <link href="themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/manual-styles.css">
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-78231712-3"></script>-->
+    <script defer src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+    <script defer src="js/manual.js" type="module"></script>
+    <!--<script src="js/plugins/piexif.js" type="text/javascript"></script>-->
+    <!--<script src="js/fileinput.js" type="text/javascript"></script>-->
+    <!--<script src="themes/fas/theme.js" type="text/javascript"></script>-->
+    <!--<script src="themes/explorer-fas/theme.js" type="text/javascript"></script>-->
+    <!--<link href="skins/flat/blue.css" rel="stylesheet">-->
+    <!--<script src="js/icheck.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+    <!--link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"-->
+    <!--<link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css"/-->
+
+
+</head>
+
+<body class="manual">
+<div id="navAndHeaer">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm">
+        <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-4" style="font-size: 22px;margin-right: 5px">
+                <li class="nav-item">
+                    <a href="index_0216beforeLT.html" class="nav-link" target="_blank">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="retrieveResults.html" class="nav-link" target="_blank">Retrieve results</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link" target="_blank">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="help_0409.html" class="nav-link active" target="_blank">Help</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="description text-left" style="margin: 63px 60px 0px;padding-top: 5px;padding-bottom: 5px;padding-left: 30px">
+            <p style="color: black;line-height: 150%">
+                <span><strong style="font-size: 65px; color: #007BFF">scTPA</strong></span>
+                <br/>
+                <span style="font-style:italic;font-size: 24px;color: black">A web tool for single-cell transcriptome analysis of pathway activation signatures.</span>
+            </p>
+        </div>
+    </header>
+</div>
+
+<!--Help content-->
+<div id="manual_app" class="flex flexRow flexNoGap flexNoWrap" v-cloak>
+    <div v-show="!showNav" id="callOutNav" @click="toggleNav(true)">
+        Table of contents
+    </div>
+    <transition name="nav-slide-right">
+        <div v-show="showNav" id="manualNav" class="noFlex flexColumn flexNoGap flexCenter">
+            <div id="navHeader" class="flexRow flexWrap flexNoGap flexCenter">
+                <div class="flex">Table of contents</div>
+                <div id="collapseNavButton" @click="toggleNav(false)" style="border-radius: 4px;">Collapse</div>
+            </div>
+            <div id="navContent" style="font-size: 16px; padding-left: 24px;">
+                <ul style="padding-left: 5px;margin-top: 18px">
+                    <li>
+                        <a href="#introduction" @click="clickOnNav" style="font-size: 20px;">Introduction</a>
+                    </li>
+                    <li>
+                        <a href="#quickStart" @click="clickOnNav" style="font-size: 20px;">Quick start</a>
+                        <ul>
+                            <li>
+                                <a href="#Example1" @click="clickOnNav" style="font-size: 18px;">Example 1</a>
+                            </li>
+                            <li>
+                                <a href="#Example2" @click="clickOnNav" style="font-size: 18px;">Example 2</a>
+                            </li>
+                            <li>
+                                <a href="#Recommendation" @click="clickOnNav" style="font-size: 18px;">Recommendation</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#input" @click="clickOnNav" style="font-size: 20px;">Input & Data processing</a>
+                        <ul>
+                            <li>
+                                <a href="#single-cellRNA-seqprofiles" @click="clickOnNav" style="font-size: 18px;">Single-cell RNA-seq profile</a>
+                            </li>
+                            <li>
+                                <a href="#cell-typelabel" @click="clickOnNav" style="font-size: 18px;">Cell-type label (Optional)</a>
+                            </li>
+                            <li>
+                                <a href="#pathwayselection" @click="clickOnNav" style="font-size: 18px;">Pathway selection</a>
+                                <ul>
+                                    <li>
+                                        <a href="#canonicalpathways" @click="clickOnNav">Canonical pathways</a>
+                                    </li>
+                                    <li>
+                                        <a href="#extendedpathways" @click="clickOnNav">Extended pathways</a>
+                                    </li>
+                                    <li>
+                                        <a href="#userdefinedpathways" @click="clickOnNav">User defined pathways (Optional)</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#advancedparametersettings" @click="clickOnNav" style="font-size: 18px;">Advanced parameter settings</a>
+                                <ul>
+                                    <li>
+                                        <a href="#scRNA-seqdatapreprocessing" @click="clickOnNav">scRNA-seq preprocessing</a>
+                                    </li>
+                                    <li>
+                                        <a href="#pathwayactivationcalculation" @click="clickOnNav">Pathway activation score calculation</a>
+                                    </li>
+                                    <li>
+                                        <a href="#cellclusteringandannotation" @click="clickOnNav">Cell clustering and annotation</a>
+                                    </li>
+                                    <li>
+                                        <a href="#identificationofcell-type-specificpathwaysignatures" @click="clickOnNav">Identification of cell-type-specific pathway signatures</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#output" @click="clickOnNav" style="font-size: 20px;">Output</a>
+                        <ul>
+                            <li>
+                                <a href="#pathwayactivityprofiles" @click="clickOnNav" style="font-size: 18px;">Pathway activity profile</a>
+                            </li>
+                            <li>
+                                <a href="#clusteranalysisandnon-lineardimensionalreduction" @click="clickOnNav" style="font-size: 18px;">Cluster analysis and non-linear dimensional reduction</a>
+                            </li>
+                            <li>
+                                <a href="#pathwaysignatures" @click="clickOnNav" style="font-size: 18px;">Pathway signatures</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#jobretrieve" @click="clickOnNav" style="font-size: 20px;">Job retrieval</a>
+                    </li>
+                    <li>
+                        <a href="#references" @click="clickOnNav" style="font-size: 20px;">References</a>
+                    </li>
+                    <li>
+                        <a href="#citation" @click="clickOnNav" style="font-size: 20px;">Citation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </transition>
+    <div id="manualContent" ref="manualContent" class="flex">
+        <!--Introduction-->
+        <div ref="introduction" class="manualHeader" style="margin-top: 20px; margin-bottom: 20px">
+            <h1>scTPA manual</h1>
+        </div>
+        <div class="section">
+            <!--Introduction-->
+            <h1>Introduction</h1>
+            <p>scTPA is a web tool for single-cell transcriptome analysis and annotation based on biological pathway activation in human and mouse.
+                We collected a large number of biological pathways with different functional and taxonomic classifications, which facilitates the
+                identification of key pathway signatures for cell type annotation and interpretation. The executable codes of four different methods
+                of pathway activation evaluation were optimized to yield a 4- to 56-fold decrease in run time. The analysis and visualization of
+                single-cell pathway activation profiles, such as cell clustering and annotation, identification of marker pathways and their associated
+                genes are provided, which allows for an improved understanding of cell type and status from a pathway-oriented perspective. A schematic
+                overview of the scTPA web tool is presented below. </p>
+            <div class="manualImg small" style="display:block;margin:0 auto">
+                <img alt="Expandable picture for workflow" src="./manual/workflow.png">
+            </div>
+        </div>
+        <!--  Quick start -->
+        <div ref="quickStart" class="section" style="margin-top: 30px">
+            <!--Quick Start-->
+            <h1>Quick Start</h1>
+            <p>
+                We have provided two examples (example 1, known cell labels, small cell numbers; example 2, unknown cell labels, large cell numbers) for
+                users to familiarize themselves with our web tool quickly. Information, including the number of page visits, location, etc., are
+                automatically collected and analyzed using revolverMaps for the improvement of our service.
+            </p>
+            <h2 ref="Example1">Example 1</h2>
+            <!--Example 1-->
+            <p>
+                Example 1 is a dataset containing single-cell transcriptome data of peripheral blood mononuclear cells with known cell types and small cell numbers.
+            </p>
+            <p>
+                In this example, we will perform the analysis using a published dataset of peripheral blood mononuclear cells (PBMCs) freely available from 10X
+                Genomics [<span style="font-style: italic">Grace X. Y. Zheng et al. Nat Commun. 2017, PMID: 28091601</span>]. We randomly selected the gene expression count
+                of 500 cells across five cell types for the example1 dataset. The analysis will take approximately 1 minute.
+            </p>
+
+            <!--   Input  -->
+            <h3>Import example data:</h3>
+            <div class="exampleSteps" style="margin-top: 10px">
+                <ul>
+                    <li>Make sure that the "Homo species" is selected.</li>
+                    <li>Click the "Example 1" button on the homepage.</li>
+                    <li>Click "run".</li>
+                </ul>
+            </div>
+
+            <!--   Output  -->
+            <h3>Output</h3>
+            <p>
+                The output page shows analysis results of pathway activation for distinct cell populations with pre-defined labels. Interactive tables, scatter
+                plots and heatmap plots were generated to facilitate the illustration of the results. The main files can be downloaded for further inspection
+                and deeper analysis by clicking the Download button.
+            </p>
+
+            <h2 ref="Example2">Example 2</h2>
+            <!--Example 2-->
+            <p>
+                Example 2 is a dataset containing single-cell transcriptomics data of human melanoma tumor with unknown cell type labels.
+            </p>
+            <p>
+                In this example, we will perform the analysis using a published dataset consisting of 1,167 human single malignant cells of melanoma tumor from
+                the Smart-seq2 protocol [<span style="font-style: italic">Tirosh I et al. Science. 2016, PMID: 27124452</span>]. This example will take approximately 3 minutes
+                to run on scTPA.
+            </p>
+            <h3>Import example data:</h3>
+            <div class="exampleSteps" style="margin-top: 10px">
+                <ul>
+                    <li>Make sure that the "Homo species" is selected.</li>
+                    <li>Click the "Example 2" button on the homepage.</li>
+                    <li>Click "run".</li>
+                </ul>
+            </div>
+
+            <h3>Output</h3>
+            <p>
+                The output results are the same as those from example 1, except for an additional cell type annotation file from cell clustering analysis.
+            </p>
+
+            <h2 ref="Recommendation">Recommendation</h2>
+            <!--Recommendation-->
+            <p>
+                We recommend the user to run our examples to understand the usage of our tool quickly. If the user wants to explore the results of our examples,
+                the user can obtain the results of our examples directly in the Job queue page or using the result retrieve function on the Job Retrieve page
+                using the corresponding IDs.
+            </p>
+            <p>
+                Additionally, it is highly recommended to provide an e-mail address to receive a notification when results become available. The user will then
+                receive a message stating whether the job was completed successfully or with an error. You may also bookmark the results page after submitting
+                your data.
+            </p>
+        </div>
+        <!--- Input -->
+        <div ref="input" class="section" style="margin-top: 30px">
+            <!--Input-->
+            <h1>Input & Data processing</h1>
+            <!--  Single-cell RNA-seq profiles  -->
+            <h2 ref="single-cellRNA-seqprofiles">Single-cell RNA-seq profile</h2>
+            <p>
+                The input single-cell RNA-seq profile is a tab- or comma-separated plain-text file endingin ‘.txt’ or ‘.csv’. The processed gene expression
+                profile can be generated using different platforms, such as 10X genomics and Smart-seq. The values in this profile should be non-negative, and
+                this file can be uploaded depending on data types of reads count, RPKM, FPKM, CPM or TPM.
+            </p>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="Expandable data  for input" src="./manual/input.png">
+            </div>
+            <p>
+                The plain-text file must include annotations of gene names (the first column) and cell names (the first row). scTPA can recognize gene symbols and
+                Ensemble IDs automatically. The input file can be compressed in .zip, .tar, .bz2 or .tar.gz format. <a href="http://sctpa.bio-data.cn/sctpa/results/example/expression.csv">Click</a>
+                here for an example of a single-cell RNA-seq profile.
+            </p>
+
+            <!-- Cell-type label  -->
+            <h2 ref="cell-typelabel">Cell-type label (Optional)</h2>
+            <p>
+                The cell-type labeling file is used for the pre-definition of cell populations for single-cell profiles, and this file is optional for users to
+                upload for scTPA analysis.
+            </p>
+            <p>
+                The cell-type labeling file should also be a comma- or tab-separated plain-text file matched with the single-cell RNA-seq profile used above. The
+                first column in the file represents the cell names consistent with those in the single-cell RNA-seq profile, and the second column in the file
+                represents cell populations defined by the users. <a href="http://sctpa.bio-data.cn/sctpa/results/example/cell_type.csv">Click</a>
+                here for an example.
+            </p>
+            <p>
+                If this file is uploaded to the web server, the main purpose of scTPA is annotating and interpreting the cell populations based on pathway
+                activation signatures by ignoring the cell clustering step. Otherwise, the potential cell populations will first be determined by clustering
+                analysis of pathway activation scores of each cell, and subsequently the analysis and annotation are performed.
+            </p>
+
+            <!--  Pathway selection  -->
+            <h2 ref="pathwayselection">Pathway selection</h2>
+            <p>
+                Pathways are biological network models defining how biomolecules cooperate to accomplish cellular tasks in different contexts. The assessment of
+                pathway activation is a promising strategy to obtain answers to diverse questions, such as discovering molecular mechanisms in cells, studying
+                diseases and drug development. To facilitate the evaluation of pathway activation at single-cell resolution, the ‘Canonical pathway’ and ’Extended
+                pathway’ options were provided for the user to select literature-curated pathways of interest. Furthermore, the user may also upload their pathways
+                of interest for specific analysis.
+            </p>
+            <h3 ref="canonicalpathways">Canonical pathways</h3>
+            <p>
+                A total of 51,210 human and 1,762 mouse canonical pathways were collected from seven widely used pathway databases, such as KEGG and Reactome.
+                Notably, these literature-curated pathways were grouped into six different categories, namely general, metabolic, signaling and regulatory, genome
+                maintenance, drug and small molecules, and cancer pathways. This enables the selection of the relevant pathway database according to the interests
+                of researchers.
+            </p>
+
+            <h3 ref="extendedpathways">Extended pathways</h3>
+            <p>
+                Extended pathways in scTPA represent various sets of unordered and unstructured collections of genes, which could be associated with a specific
+                biological process (e.g. cell cycle), location (e.g. on chromosome 1), disease (e.g. breast cancer), cell identity, cell state or cell fate.
+            </p>
+            <p>
+                Extended pathways more widely cover biological functions with genetic and chemical perturbation, computational analysis of genomic information, and
+                additional biological annotation compared with traditional canonical pathways. Currently, the extended pathways option contains 19,367 pathways
+                from 9 categories for human data, and 19,385 pathways from 5 categories for mouse data. These were mainly collected from The Molecular Signatures
+                Database (MSigDB).
+            </p>
+
+            <h3 ref="userdefinedpathways">User defined pathways (Optional)</h3>
+            <p>
+                In addition to pathways included in the Canonical pathways or Extended pathways groups, the user can upload pathways of interest which are not
+                cataloged by scTPA. We support files of user defined pathways in the standard
+                <a href="http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">GMT file format</a>.
+                <a href="http://sctpa.bio-data.cn/sctpa/results/example/pathways.gmt">&nbsp;Click</a> here for an example.
+            </p>
+
+            <!--  Advanced parameter settings   -->
+            <h2 ref="advancedparametersettings">Advanced parameter settings</h2>
+            <!--  scRNA-seq data preprocessing   -->
+            <h3 ref="scRNA-seqdatapreprocessing">scRNA-seq preprocessing</h3>
+            <p>
+                Parameters for three aspects in scRNA-seq pre-processing, including data normalization, profile filtering and missing value imputation are available.
+            </p>
+            <div>
+                <p style="margin-left: 25px; margin-top: 20px; font-size: 22px">
+                    <b>Data normalization: </b> There are four methods for normalization. No normalization is performed by default.
+                </p>
+                <div class="exampleSteps" style="margin-left: 25px">
+                    <ul>
+                        <li>--Log transform: Feature counts output for each cell is divided by the total counts for that cell and multiplied by 1e4. This is then natural-log transformed.</li>
+                        <li>--Centered log ratio: A commonly used Compositional Data Analysis (CoDA) transformation method.</li>
+                        <li>--Relative counts: Feature counts output for each cell is divided by the total counts for that cell and multiplied by 1e4 (for TPM/CPM/FPKM/RPKM this value is 1e6).</li>
+                        <li>--Size factor (scran): The normalization strategy for scRNA-seq is implemented based on the deconvolutional size factor using the scran R package. This can be applied to the count matrix.</li>
+                    </ul>
+                </div>
+
+                <p style="margin-left: 25px; margin-top: 20px; font-size: 22px"><b>Profile filtering: </b> The user can apply or remove filters based on: </p>
+                <div class="exampleSteps" style="margin-left: 25px">
+                    <ul>
+                        <li>--Min_cells: Genes must be in a minimum number of cells.</li>
+                        <li>--Min_genes: Cells must have at least the minimum number of genes.</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 5px">
+                    The default threshold of --Min_cells is 3 and that of --Min_genes is 200.
+                </p>
+                <p style="margin-left: 25px; margin-top: 20px; font-size: 22px">
+                    <b>Missing value imputation: </b> Imputation of scRNA-seq data may be helpful for the identification of biologically meaningful cell populations
+                    and characterization of pathway activation in single cells. scTPA could impute the missing value of the data matrix after normalization and
+                    filtering steps, and this function is performed using the R package scImpute.
+                </p>
+                <p style="margin-top: 20px;">
+                    Please note that this step will take a long time, particularly when the cell type labels are not pre-defined.
+                </p>
+            </div>
+
+            <!--  Pathway activation calculation   -->
+            <h3 ref="pathwayactivationcalculation">Pathway activation score calculation</h3>
+            <div>
+                <p>
+                    Four classical and state-of-the-art methods, including ssGSEA (single sample gene set enrichment analysis), GSVA (gene set variation analysis),
+                    PLAGE (pathway level analysis of gene expression) and combining Z-scores, were incorporated into the scTPA tool to measure the activation of
+                    biological pathways or molecular signatures for individual cells. The four methods were collected and implemented to calculate pathway
+                    activation scores from the processed gene expression matrix using the R/Bioconductor package GSVA. To reduce the calculation time, the main
+                    loop function was re-implemented using c++ by Rcpp.
+                </p>
+            </div>
+
+            <!--  Cell  clustering and annotation  -->
+            <h3 ref="cellclusteringandannotation">Cell clustering and annotation</h3>
+            <div>
+                <p>
+                    If users do not upload a cell type label file, we will cluster cell populations based on the pathway activation score matrix using six methods,
+                    including Seurat, K-means, K-mediods, SIMLR, DBSCAN and hclust. All cluster functions group cells into distinct populations according to the
+                    cluster parameters. The main parameters for these clustering methods, including the number of clusters, resolution and dimensions of principal
+                    component analysis (PCA), are provided in the advanced setting panel. All methods are applied using the R packages SIMLR, cluster, stats and
+                    Seurat. Please refer to the description of the corresponding R packages for more details.
+                </p>
+            </div>
+
+            <!--  Identification of cell-type-specific pathway signatures  -->
+            <h3 ref="identificationofcell-type-specificpathwaysignatures">Identification of cell-type-specific pathway signatures</h3>
+            <div>
+                <p>
+                    This step will identify cell-type-specific activation pathway signatures in all cell populations using five commonly used differential
+                    expression methods. All functions are wrapped and modified by the FindAllMarkers script in the R package Seurat. The two parameters
+                    “logFC.threshold” and “min.pct” were provided to allow flexible screening of significant activated pathways.
+                </p>
+                <div class="exampleSteps" style="margin-left: 25px">
+                    <ul>
+                        <li>--logfc.threshold: Limit testing to genes which show, on average, at least X-fold difference (log-scale) between the two groups of cells. Default is 0.25.</li>
+                        <li>--min.pct: Only test genes that are detected in a minimum fraction of min.pct cells in either of the two populations. Default is 0.1.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--   Output  -->
+        <div ref="output" class="section" style="margin-top: 30px">
+            <!--Output-->
+            <h1>Output</h1>
+            <div>
+                <div>
+                    <p>
+                        The Job Progress section records the whole process of the job.
+                    </p>
+                    <div class="manualImg large" style="display:block;margin:0 auto">
+                        <img alt="jobprocess" src="./manual/jobprocess.png">
+                    </div>
+                </div>
+                <p style="margin-top: 2vw">
+                    Once the results are available, you may fetch your results via the bookmarked page within 7 days. The analysis results can be downloaded by
+                    clicking the buttons for different types of files.
+                </p>
+                <div class="manualImg large" style="display:block;margin:0 auto">
+                    <img alt="retrieveresult" src="./manual/retrieveresult.png">
+                </div>
+            </div>
+
+            <!--  Pathway activity profiles  -->
+            <h2 ref="pathwayactivityprofiles">Pathway activity profile</h2>
+            <p>
+                The standardized variance and mean of each pathway in the pathway activity profile are calculated. Highly variable pathways are obtained based on
+                the mean-variance relationship using the FindVariableFeatures function in the Seurat package. The heatmap in this panel shows the activity scores
+                of the top 500 highly variable pathways. Rows represent pathways, whereas columns represent single cells. Column labels indicate the hierarchically
+                clustered cell types. Users can download the pathway activity score file and the corresponding PDF file.
+            </p>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="output figure" src="./manual/example1_result1.png">
+            </div>
+
+            <!--  Cluster analysis and non-linear dimensional reduction  -->
+            <h2 ref="clusteranalysisandnon-lineardimensionalreduction">Cluster analysis and non-linear dimensional reduction</h2>
+            <div>
+                <p>
+                    Following identification of highly variable pathways, the clustered cell populations based on PAS in two or three dimensions using the t-SNE
+                    or UMAP method are displayed in this panel. The colors represent the cell type label which is annotated either by the user or the clustering
+                    analysis of the PAS matrix.
+                </p>
+            </div>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="output figure" src="./manual/example1_result2.png">
+            </div>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="output figure" src="./manual/example1_result2_1.png">
+            </div>
+
+            <!--  Pathway signatures  -->
+
+            <h2 ref="pathwaysignatures">Pathway signatures</h2>
+            <p>This panel shows the conserved cell type pathway signatures across conditions. The table below shows the statistical analysis of all cell-type-specific activation pathways.</p>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="output figure" src="./manual/example1_result4.png">
+            </div>
+            <p>
+                The heatmap shows the PAS profile of the top 10 pathway signatures in each cell type. Rows represent pathway signatures. Columns represent single
+                cells, which are color-coded according to their cell types.
+            </p>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="output figure" src="./manual/example1_result3.png">
+            </div>
+
+
+            <p>
+                Finally, users can check the pathway activation distribution for an individual pathway of interest by selecting a given cell type and a given
+                pathway in the corresponding drop-down menu. The heatmap displays the gene expression patterns of the selected cell-type-specific activation
+                pathway, which may be helpful for the identification of marker genes and functional regulators.
+            </p>
+            <div class="manualImg large" style="display:block;margin:0 auto">
+                <img alt="output figure" src="./manual/example1_result5.png">
+                <img alt="output figure" src="./manual/example1_result6.png">
+            </div>
+
+        </div>
+        <div ref="jobretrieve" class="section" style="margin-top: 30px">
+            <!--Job retrieve-->
+            <h1>Job retrieval</h1>
+            <div>
+                <p>
+                    It is highly recommended to provide an e-mail address to receive a notification when the results become available. You may also bookmark the
+                    results page after submitting your data. Once the results are available, you may fetch your results from the bookmarked page.
+                </p>
+                <p>
+                    Additionally, the user can retrieve their jobs by clicking the ‘Result retrieve’ tag to show the Job Search page. By inputting the keywords of
+                    ‘Job ID’ and ’Email’, the jobs submitted by a user within the last 7 days are listed in a pop-up tab and can be retrieved without additional
+                    calculation.
+                </p>
+                <div class="manualImg large" style="display:block;margin:0 auto">
+                    <img alt="job retrieve" src="./manual/jobretrieve.png">
+                </div>
+            </div>
+        </div>
+        <div ref="references" class="section" style="margin-top: 30px;">
+            <!--References-->
+            <h1>References</h1>
+            <div ref="reference1" style="font-size: 18px">
+                <p>
+                    1. Tirosh, I. et al. Dissecting the multicellular ecosystem of metastatic melanoma by single-cell RNA-seq. Science 352, 189-196, doi:10.1126/science.aad0501 (2016).
+                </p>
+            </div>
+            <div ref="reference2" style="font-size: 18px">
+                <p style="line-height: 110%">
+                    2. Zheng, G. X. et al. Massively parallel digital transcriptional profiling of single cells. Nat Commun 8, 14049, doi:10.1038/ncomms14049 (2017).
+            </div>
+            <div ref="reference3" style="font-size: 18px">
+                <p>
+                    3. Xiao, Z., Dai, Z. & Locasale, J. W. Metabolic landscape of the tumor microenvironment at single cell resolution. Nat Commun 10, 3763, doi:10.1038/s41467-019-11738-0 (2019).
+                </p>
+            </div>
+            <div ref="reference4" style="font-size: 18px">
+                <p>
+                    4. Jaitin, D. A. et al. Massively parallel single-cell RNA-seq for marker-free decomposition of tissues into cell types. Science 343, 776-779, doi:10.1126/science.1247651 (2014).
+                </p>
+            </div>
+            <div ref="reference5" style="font-size: 18px">
+                <p>
+                    5. Grubman, A. et al. A single-cell atlas of entorhinal cortex from individuals with Alzheimer's disease reveals cell-type-specific gene expression regulation. Nat Neurosci 22, 2087-2097, doi:10.1038/s41593-019-0539-4 (2019).
+                </p>
+            </div>
+            <div ref="reference6" style="font-size: 18px">
+                <p>
+                    6. Li, W. V. & Li, J. J. An accurate and robust imputation method scImpute for single-cell RNA-seq data. Nat Commun 9, 997, doi:10.1038/s41467-018-03405-7 (2018).
+                </p>
+            </div>
+            <div ref="reference7" style="font-size: 18px">
+                <p>
+                    7. Rahmati, S. et al. pathDIP 4: an extended pathway annotations and enrichment analysis resource for human, model organisms and domesticated species. Nucleic Acids Res, doi:10.1093/nar/gkz989 (2019).
+                </p>
+            </div>
+            <div ref="reference8" style="font-size: 18px">
+                <p>
+                    8. Hanzelmann, S., Castelo, R. & Guinney, J. GSVA: gene set variation analysis for microarray and RNA-seq data. BMC Bioinformatics 14, 7, doi:10.1186/1471-2105-14-7 (2013).
+                </p>
+            </div>
+            <div ref="reference9" style="font-size: 18px">
+                <p>
+                    9. <span>Butler, A., Hoffman, P., Smibert, P., Papalexi, E. & Satija, R. Integrating single-cell transcriptomic data across different conditions,
+                    technologies, and species. Nat Biotechnol 36, 411-420, doi:10.1038/nbt.4096 (2018).</span>
+                </p>
+            </div>
+
+        </div>
+        <div ref="citation" class="section" style="margin-top: 30px">
+            <!--Citation-->
+            <h1>Citation</h1>
+            <div>
+                <p style="font-size: 22px; margin-top: 15px">
+                    <b>scTPA: </b> A web tool for single-cell transcriptome analysis of pathway activation signatures.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<hr/>
+<!-- Footer -->
+<footer class="page-footer">
+    <div class="container">
+        Copyright © <a href="http://su-lab.org" target="_blank">Institution of Biomedical Big Data</a>, Wenzhou Medical University All rights reserved.
+    </div>
+</footer>
+</body>
+</html>

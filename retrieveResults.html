@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>scTPA - Retrieve results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src='js/main.js'></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <link href="skins/minimal/orange.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <script src="js/sweetalert-dev.js"></script>
+
+
+</head>
+<body>
+<div id="navAndHeaer">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm">
+        <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-4" style="font-size: 22px;margin-right: 5px">
+                <li class="nav-item">
+                    <a class="nav-link" href="index_0216beforeLT.html" target="_blank">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="javascript:void(0);">Retrieve results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html" target="_blank">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="help_0409.html" target="_blank">Help</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="description text-left" style="margin: 63px 60px 0px;padding-top: 5px;padding-bottom: 5px;padding-left: 30px">
+            <p style="color: black;line-height: 150%">
+                <span><strong style="font-size: 65px; color: #007BFF">scTPA</strong></span>
+                <br/>
+                <span style="font-style:italic;font-size: 24px;color: black">A web tool for single-cell transcriptome analysis of pathway activation signatures.</span>
+            </p>
+        </div>
+    </header>
+</div>
+
+<!-- Retrieve results -->
+<div class="retrieveResults" id="retrieveResults">
+<!--    <h2 class="text-center">Retrieve results</h2>-->
+    <form enctype="multipart/form-data">
+        <div class="container">
+            <!--<div class="row">
+                <div class="col-sm-2">
+                    <span class="lead">Retrieve results</span>
+                </div>
+            </div>-->
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header pl-2">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne" style="font-weight: bold">
+                            Retrieve results <i class="fa fa-angle-right" style="font-size:14px;"></i></a>
+                        </a>
+                    </div>
+                    <!--<div id="collapseOne" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-sm-2">
+                    <span class="lead" style="font-weight: normal">Guide:</span>
+                </div>
+                <div class="col-sm-10">
+                    User can retrieve his/her own jobs by a "Job ID", then the job will be listed in a pop-up tab.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-10">
+                    Message "No hits found" will emerge if an identifier from user can not be exactly matched.
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-sm-2">
+                    <span class="lead" style="font-weight: normal">Search Type</span>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <select class="form-control" id="form-control">
+                            <option value="job">Job ID</option>
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <span class="lead" style="font-weight: normal">Content</span>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input  class="form-control" id="exampleInputEmail1" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button id="search" type="button" class="btn btn-primary">Search</button>
+                    <button id="reset" class="btn btn-outline-secondary">Reset</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<!--    存储渲染数据的div-->
+    <div id="saveSearch" style="width: 50%; margin-right: auto;margin-left: auto;">
+        <table id="tabletest" class="table">
+
+        </table>
+    </div>
+
+</div>
+
+
+<!-- Footer -->
+<footer class="page-footer" style="position: absolute; bottom: 0; text-align: center; width: 100%;">
+    <div class="container" style="padding: 0px 20px;margin-bottom: 0px">
+        Copyright © <a href="http://su-lab.org" target="_blank">Institution of Biomedical Big Data</a>, Wenzhou Medical University All rights reserved.
+        <!--<span><script type="text/javascript" src="//rf.revolvermaps.com/0/0/3.js?i=5zzng66pqzp&amp;b=0&amp;s=28&amp;m=2&amp;cl=ffffff&amp;co=010020&amp;cd=aa0000&amp;v0=60&amp;v1=60&amp;r=1" async="async"></script></span>-->
+    </div>
+</footer>
+</body>
+</html>

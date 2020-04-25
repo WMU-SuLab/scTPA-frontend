@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scTPA - Home</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!--link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"-->
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src='js/main.js'></script>
+
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <link href="themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="js/plugins/piexif.js" type="text/javascript"></script>
+    <!--<script src="js/plugins/sortable.js" type="text/javascript"></script>-->
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <!--<script src="js/locales/fr.js" type="text/javascript"></script>
+    <script src="js/locales/es.js" type="text/javascript"></script>-->
+    <script src="themes/fas/theme.js" type="text/javascript"></script>
+    <script src="themes/explorer-fas/theme.js" type="text/javascript"></script>
+
+    <link href="skins/flat/blue.css" rel="stylesheet">
+    <script src="js/icheck.min.js"></script>
+    <script src="js/createtxt.js"></script>
+
+
+    <style>
+        tooltip {
+            foot-size:12px;
+        }
+    </style>
+    <script src="js/FileSaver.js"></script>
+    <style>
+        .backgroundText {
+            padding: 1px 7px;
+            color: #ffffff  !important;
+            background-color: #66bbcc;
+            border-radius: 15px;
+
+        }
+        .externalLinks > a{
+            font-weight: normal !important;
+            margin:6px;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+<div id="navAndHeaer_home">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm">
+        <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-4" style="font-size: 22px;margin-right: 5px">
+                <li class="nav-item">
+                    <a href="index_liting.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="retrieveResults.html" class="nav-link" target="_blank">Retrieve results</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link" target="_blank">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="help_0409.html" class="nav-link" target="_blank">Help</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="description text-left" style="margin: 60px 60px 0px;padding-top: 8px;padding-bottom: 5px;padding-left: 30px">
+            <p style="color: black;line-height: 150%">
+                <span><strong style="font-size: 65px; color: #007BFF">scTPA</strong></span>
+                <br/>
+                <span style="font-style:italic;font-size: 24px;color: black">A web tool for single-cell transcriptome analysis of pathway activation signatures.</span>
+            </p>
+            <p style="padding: 15px 20px 15px 15px;width: 910px; margin-bottom: 10px">
+                  <span style=" padding-top: 10px; letter-spacing: -1px;line-height: 85%;color: black;font-size: 20px;">
+                      The scTPA is used for the analysis of single-cell gene expression of pathway activation signatures in human and mouse. Based on well-known biological pathways or user-defined pathways, scTPA will measure the pathway activation for single cells, perform clustering analysis and identify cell-type-specific activation pathways, which will allow a better understanding of cell type and status from a pathway-oriented perspective.
+                </span>
+            </p>
+            <p>
+                <button id="learn" type="button" class="btn btn-primary" style="font-size: 22px;color: white;background-color: #444444;border:0px solid;"><a href="help_0425.html" style="color: white;" target="_blank">Learn&nbsp;&nbsp;more&nbsp;&nbsp;>></a></button>
+            </p>
+        </div>
+    </header>
+</div>
+
+<!-- Job Submit -->
+<div class="row">
+    <div class="col-sm-10" style="margin-left: 2rem; margin-right: -6rem;">
+        <div class="jobSubmit" id="jobSubmit">
+            <form action="/fileUpload/upload"  enctype="multipart/form-data"  method="post" target="_blank" style="color: black">
+                <div class="container my-4 species">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span class="lead" style="font-size: 28px;letter-spacing: -1px"><b>Species</b></span>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select name="species" id="speciesSelection" class="form-control" style="font-size: 19px">
+                                        <option value="homo">Homo sapiens</option>
+                                        <option value="mus">Mus musculus</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4" style="margin-left: 0.1rem">
+                                    <div class="float-right">
+                                        <input type="text" id="example" name="example" value="" style="display: none">
+                                        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Expected run time: 1 minutes." style="padding: 3px 10px; border: 0px;background-color: #17A2BB;font-size: 20px; height: 110%"><a href="javascript:void(0);" id="example1"><span style="color:#ffffff;">Example <span style="font-size: 25px">1</span></span></a></button>
+                                        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Expected run time: 3 minutes." style="margin-left: 2px; padding: 3px 10px ; border: 0px;background-color: #17A2BB;font-size: 20px; height: 110%"><a href="javascript:void(0);" id="example2"><span style="color:#ffffff">Example <span style="font-size: 25px">2</span></span></a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container my-4 scRnaSeqProfile">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span class="lead" style="font-size: 28px;letter-spacing: -1px"><b>scRNA-Seq profile</b></span>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-10" id="inputContainer1">
+                                    <!--                    <div style="margin-left: 3px;margin-bottom: 5px;">Count <a href="javascript:void(0);" id="example2">load example data</a>(<a href="/job_server/downloadExample.php?fileName=mat_500.csv"><i class="fa fa-download"></i></a>).</div>-->
+                                    <label style="font-size: 20px">
+                                        <input id="CountRadio" value="count" name="data_type" type="radio" checked><strong> Count </strong></label>
+                                    <div id="inputDiv1">
+                                        <div class="file-loading">
+                                            <input id="scRnaSeqProfileInput" onclick="changFile()" onchange="upload()" name="f_file" type="file"
+                                                   data-theme="fas">
+                                        </div>
+                                    </div>
+                                    <!--<div id="kv-error-1" style="margin-top:10px;display:none"></div>
+                                    <div id="kv-success-1" class="alert alert-success" style="margin-top:10px;display:none"></div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-3">
+
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-10" id="inputContainer2">
+                                    <label style="font-size: 20px"><input id="TpmOrCpmOrFpkmRadio" value="TPM" name="data_type" type="radio"><strong> TPM/CPM/FPKM/RPKM </strong></label>
+                                    <div id="inputDiv2">
+                                        <div class="file-loading">
+                                            <input id="tpmOrCpmOrFpkmInput" onclick="changTpm()" onchange="upload()" name="f_file" type="file"
+                                                   data-theme="fas">
+                                        </div>
+                                    </div>
+                                    <!--<div id="kv-error-2" style="margin-top:10px;display:none"></div>
+                                    <div id="kv-success-2" class="alert alert-success" style="margin-top:10px;display:none"></div>-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container my-4 cellTypeLabel">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span class="lead" style="font-size: 28px;letter-spacing: -1px"><b>Cell type label</b> (optional)</span>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-10" id="inputContainer3">
+                                    <div class="checkbox">
+                                        <label style="font-size: 20px"><input id="cellTypes" name = "hasCellTypes" type="checkbox"  value="cellTypes"><strong> Upload data</strong></label>&nbsp;&nbsp;
+                                        <a data-toggle="tooltip" data-placement="bottom" title="The cell-type label file should be a tab-separated or comma-separated plain-text file with two columns. Please visit the Help page for more details.">
+                                            <i class="fa fa-info-circle" style="color: #0d74dd"></i></a>
+                                    </div>
+                                    <div id="inputDiv3">
+                                        <div class="file-loading">
+                                            <input id="cellTypeLabelInput" onclick="changeCell()" onchange="upload()" name="cellType_file" type="file"
+                                                   data-theme="fas">
+                                        </div>
+                                        <!--<div id="cellTypeLabelInputError" style="margin-top:10px;display:none"></div>
+                                        <div id="cellTypeLabelInputSuccess" class="alert alert-success" style="margin-top:10px;display:none"></div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container my-4 pathway">
+                    <div class="row my-4">
+                        <div class="col-sm-3">
+                            <span class="lead" style="font-size: 28px;letter-spacing: -1px"><b>Pathways</b></span>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div style="padding-top: 5px; padding-left: 1rem">
+                                            <label style="font-size: 20px">
+                                                <input id="canonicalPathwayRadio" value="canonicalPathway" class="pathwaySelection" name="pathwaySelection" type="radio" checked><strong> Canonical pathway</strong>
+                                            </label>
+                                        </div>
+                                        <div style="width: 30%; margin-left: 3rem" >
+                                            <select id="canonicalPathwaySelect" class="form-control">
+                                                <!--                                <option disabled selected></option>-->
+                                                <option value="generalpathway">General pathway</option>
+                                                <option value="metabolicpathway">Metabolic pathway</option>
+                                                <option value="signalingandregulatory">Signaling and regulatory</option>
+                                                <option value="genomemaintenance">Genome maintenance</option>
+                                                <option value="drugssmallmolecules">Drugs & small molecules</option>
+                                                <option value="cancerpathway">Cancer pathway</option>
+                                            </select>
+                                        </div>
+                                        <div style="width: 30%; margin-left: 0.5rem">
+                                            <select name="pathway_database" id="generalPathwaySelect" class="form-control">
+                                                <!--                                <option disabled selected></option>-->
+                                                <option value="kegg">KEGG (293)</option>
+                                                <option value="panther_pathway">Panther (94)</option>
+                                                <option value="biocarta">BioCarta (236)</option>
+                                                <option value="reactome">REACTOME (1836)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-sm-4" style="padding-top: 5px;">
+                                            <label style="font-size: 20px">
+                                                <input id="extendedPathwaysRadio" value="extendedPathways" class="pathwaySelection" name="pathwaySelection" type="radio"><strong> Extended pathways</strong>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div style="margin-left: 0.75rem">
+                                                <select name="pathway_database" id="extendedPathwaysSelect" class="form-control" disabled style="font-size: 18px">
+                                                    <!--                                <option disabled selected></option>-->
+                                                    <!--                                <option value="c4.cgn">Canonical pathways (2199)</option>-->
+
+                                                    <option value="h.all">Hallmark gene sets (50)</option>
+                                                    <option value="c2.cgp">Chemical and genetic perturbations (3302)</option>
+                                                    <option value="c4.cgn">Cancer gene neighborhoods (427)</option>
+                                                    <option value="c4.cm">Cancer modules (431)</option>
+                                                    <option value="c5.bp">GO biological process (7350)</option>
+                                                    <option value="c5.cc">GO cellular component (1101)</option>
+                                                    <option value="c5.mf">GO molecular function (1645)</option>
+                                                    <option value="c6.all">Oncogenic signatures (189)</option>
+                                                    <option value="c7.all">Immunologic signatures (4872)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-sm-12" id="inputContainer4">
+                                            <div class="checkbox">
+                                                <label style="font-size: 20px"><input id="userDefinedPathwayCheckbox" type="checkbox" value="userDefinedPathway"><strong> User defined pathway</strong> (Optional)</label>&nbsp;&nbsp;
+                                                <a data-toggle="tooltip" data-placement="bottom" title="The user could upload their interested pathways which were not cataloged by scTPA. Please visit the Help page for more details.">
+                                                    <i class="fa fa-info-circle" style="color: #0d74dd"></i></a>
+                                            </div>
+                                            <div id="inputDiv4">
+                                                <div class="file-loading">
+                                                    <input id="userDefinedPathwayInput" onchange="upload()" name="user_pathway_file" type="file"
+                                                           data-theme="fas">
+                                                </div>
+                                            </div>
+                                            <!--<div id="kv-error-3" style="margin-top:10px;display:none"></div>
+                                            <div id="kv-success-3" class="alert alert-success" style="margin-top:10px;display:none"></div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container my-4">
+                    <div id="accordion">
+                        <p>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#collapseOne"
+                               aria-expanded="false" aria-controls="collapseExample">
+                                <font size=5px><b>Advanced settings</b></font> <i id="moreSettingsIcon" class="fa fa-angle-right" style="font-size:20px;"></i>
+                                <!--                        fa fa-angle-down-->
+                            </a>
+                        </p>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                            <div class="col-sm-11">
+                                <div class="card card-body">
+                                    <div class="row moreSettings">
+                                        <div class="col-sm-3">
+                                            <span class="lead" style="font-size: 22px"><strong>scRNA-seq profiles preprocessing</strong></span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label style="font-size: 18px"><strong>Normalization:</strong></label>
+                                            <select name="normalize" id="normalizationSelect" class="form-control" style="font-size: 18px">
+                                                <option value="none">None</option>
+                                                <option value="log">Log transform</option>
+                                                <option value="CLR">Centered log ratio</option>
+                                                <option value="RC">Relative counts</option>
+                                                <option value="scran">Size factor (scran)</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div><label style="font-size: 18px"><strong>Min_cells:</strong></label></div>
+                                            <input id="minCells" style="width:80px;height:35px;margin-top: 3px;text-align: center;" type="number"
+                                                   name="min_cells" value="3" min="0">
+                                            <!--<input style="width:40px;margin-top: 37px;text-align: center;" type="text" id="minCells"
+                                                   name="minCells" value="2"> <label>Min_cells</label>-->
+                                            <!--<select id="preprossingSelect2" class="form-control">
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>-->
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div><label style="font-size: 18px"><strong>Min_genes:</strong></label></div>
+                                            <input id="minGenes" style="width:80px;height:35px;margin-top: 3px;text-align: center;" type="number"
+                                                   name="min_features" value="200" min="0" step="50">
+                                            <!--<input style="width:40px;margin-top: 37px;text-align: center;" type="text" id="minGenes"
+                                                   name="minGenes" value="200"> <label>Min_genes</label>-->
+                                            <!--<select id="preprossingSelect3" class="form-control">
+                                                <option>200</option>
+                                                <option>300</option>
+                                                <option>400</option>
+                                                <option>500</option>
+                                            </select>-->
+                                        </div>
+                                        <div class="col-sm-2" style="margin-top: 20px;margin-left: 15rem;">
+                                            <div class="checkbox">
+                                                <label style="font-size: 18px; width: 300px">
+                                                    <input name="imputation" value="TRUE" id="missingValuesImputationCheckbox" type="checkbox" > Missing values imputation
+                                                    <a data-toggle="tooltip" data-placement="bottom" title="This step will cost a long time especially when the cell type labels were not pre-defined by users.">
+                                                        <i class="fa fa-info-circle" style="color: #0d74dd"></i></a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row moreSettings">
+                                        <div class="col-sm-3">
+                                            <span class="lead" style="font-size: 22px"><strong>Pathway activity score calculation</strong></span>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label style="font-size: 18px"><strong>Method:</strong></label>
+                                            <select name="pas_method" id="pascSelect" class="form-control" style="font-size: 18px">
+                                                <option value="gsva">GSVA</option>
+                                                <option value="ssgsea">ssGSEA</option>
+                                                <option value="zscore">z-score</option>
+                                                <option value="plage">PLAGE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <hr id="clusteringHr"/>
+                                    <div class="row moreSettings" id="clustering">
+                                        <div class="col-sm-3">
+                                            <span class="lead" style="font-size: 22px"><strong>Clustering methods </strong></span>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label style="font-size: 18px"><strong>Method:</strong></label>
+                                            <select name="cluster_method" id="clusSelect1" class="form-control" style="font-size: 18px">
+                                                <option value="seurat">Seurat</option>
+                                                <option value="kmeans">K-means</option>
+                                                <option value="kmediods">K-mediods</option>
+                                                <option value="simlr">SIMLR</option>
+                                                <option value="dbscan">DBSCAN </option>
+                                                <option value="hclust">hclust</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2" id="dims">
+                                            <label style="font-size: 18px"><strong>dims:</strong></label>
+                                            <input name="seurat_dims" id="clusSelect2" class="form-control" value="15" style="font-size: 18px">
+                                        </div>
+                                        <div class="col-sm-2" id="resolution">
+                                            <label style="font-size: 18px"><strong>resolution:</strong></label>
+                                            <input  name="seurat_resolution" id="clusSelect3" value="0.5" class="form-control">
+
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row moreSettings">
+                                        <div class="col-sm-3">
+                                            <span class="lead" style="font-size: 22px"><strong>Marker pathway identification</strong></span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label style="font-size: 18px"><strong>Method:</strong></label>
+                                            <select name="marker_method" id="markerPathwayIdentificationSelect" class="form-control" style="font-size: 18px">
+                                                <option value="wilcox">Wilcoxon Rank Sum test</option>
+                                                <option value="bimod">Likelihood-ratio test</option>
+                                                <option value="t">Student's t-test</option>
+                                                <option value="LR">Logistic regression</option>
+                                                <option value="MAST">MAST </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label style="font-size: 18px"><strong>logFC_threshold:</strong></label>
+                                            <select name="logFC_thre" id="logFC_thre" class="form-control" style="font-size: 18px">
+                                                <option value="0.1">0.1</option>
+                                                <option value="0.15">0.15</option>
+                                                <option value="0.2">0.2</option>
+                                                <option value="0.25" selected="selected">0.25</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div><label style="font-size: 18px"><strong>min.pct:</strong></label></div>
+                                            <input id="min_pct" style="width:80px;height:35px;margin-top: 3px;text-align: center;" type="number"
+                                                   name="min_pct" value="0.1" min="0" max="1" step="0.1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container my-4">
+                    <div class="row" style="margin-bottom: -15px;">
+                        <div class="col-sm-3">
+                            <span class="lead"  style="font-size: 28px;letter-spacing: -1px"><b>Your email</b> (optional)</span>
+                            <!--                    TODO 应该用正则表达式限定一下email的格式-->
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="input-group mb-3 input-group-lg">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                        <i class="fa fa-envelope"></i>
+                                        </span>
+                                        </div>
+                                        <input id="email" name = "email" type="email" class="form-control" placeholder="Email Address">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container my-4">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="float-right" style="margin-left: 2rem">
+                                        <input id="sumbit" type="submit" class="btn btn-primary" value="RUN"  style="font-size: 20px;background-color: #0096e1; width: 110px">
+                                        <button id="reset" type="reset" class="btn btn-outline-secondary" style="font-size: 20px; background-color: #0096e1; width: 110px; margin-left: 1rem">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-2" style="margin-left: -2rem; margin-top: 3em">
+        <div class="News" id="News" style="width: 120%">
+            <form>
+                <div class="panel panel-default" style="height: 210px">
+                    <div class="panel-heading" style="background-color: transparent;">
+                        <i class="fa fa-external-link-alt"></i> External Links
+                    </div>
+                    <div class="panel-body">
+                        <div style="overflow: auto;background-color: #fff !important;color: #495507" >
+                            <div >
+                                <a class="backgroundText" href="http://www.genome.jp/kegg/"  target="_blank">KEGG</a>
+                                <a class="backgroundText" href="http://www.geneontology.org/" target="_blank">GO</a>
+                                <a class="backgroundText" href="https://reactome.org/"  target="_blank">Reactome</a>
+                                <a class="backgroundText" href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp"  target="_blank">MsigDB</a>
+                                <a class="backgroundText" href="http://bis.zju.edu.cn/MCA/"  target="_blank">Mouse Cell Atlas</a>
+                                <a class="backgroundText" href="https://www.humancellatlas.org/"  target="_blank">Human Cell Atlas</a>
+                                <a class="backgroundText" href="https://satijalab.org/seurat/"  target="_blank">Seurat</a>
+                                <a class="backgroundText" href="https://www.ensembl.org/"  target="_blank">Ensembl</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form style="margin-top: 2em">
+                <div class="panel panel-default" style="">
+                    <div class="panel-heading" style="background-color: transparent; ">
+                        <i class="fab fa-hacker-news"></i> News
+                    </div>
+                    <div class="panel-body" id='contentBox' style="padding:10px;">
+                        <ul class="timeline" style="height: 210px; overflow-y: scroll;" >
+
+                            <li class="timeline-inverted" style="margin: 0px 5px 10px 5px;">
+                                <div class="timeline-badge"><i class="fa fa-clock"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading border-bottom">
+                                        <i class="fa fa-pencil-alt"></i> Apr. 03, 2020
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>Update new normalization method wrapped in scran</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="timeline-inverted" style="margin: 0px 5px 10px 5px">
+                                <div class="timeline-badge"><i class="fa fa-clock"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading border-bottom">
+                                        <i class="fa fa-pencil-alt"></i> Nov. 03, 2019
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>scTPA1.0</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <form style="margin-top: 2em">
+                <div class="panel panel-default" style="">
+                    <div class="panel-heading" style="background-color: transparent; ">
+                        <i class="fas fa-map-marker-alt"></i> Visitors
+                    </div>
+                    <div class="panel-body" style="padding:10px;">
+                        <!--script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5gy0elvs4vl&amp;m=0c&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0&amp;cw=ffffff&amp;cb=d3d3d3" async="async"></script-->
+                        <script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5zzng66pqzp&amp;m=0c&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0&amp;cw=ffffff&amp;cb=d3d3d3" async="async"></script>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr/>
+<!-- Footer -->
+<footer class="page-footer">
+    <div class="container" style="text-align: center">
+        Copyright © <a href="http://su-lab.org" target="_blank">Institution of Biomedical Big Data</a>, Wenzhou Medical University All rights reserved.
+    </div>
+    <div class="container" style="text-align: center">
+        scTPA is developed and maintained by the SuLab and released under the GNU Public License (GPL 3.0).
+    </div>
+</footer>
+</body>
+
+<!-- Species select-->
+<script>
+    $(document).ready(function() {
+        $('#speciesSelection').on('change', function () {
+            //alert( this.value );
+
+            if ($('#canonicalPathwayRadio').prop('checked')) {
+                $('#extendedPathwaysSelect').val('');
+                $('#canonicalPathwaySelect').empty();
+                $('#generalPathwaySelect').empty();
+                if ($('#speciesSelection').val() == "homo") {
+                    //alert( this.value );
+                    $('#canonicalPathwaySelect').append(' <option value="generalpathway">General pathway</option>\n' +
+                        '                                <option value="metabolicpathway">Metabolic pathway</option>\n' +
+                        '                                <option value="drugssmallmolecules">Drugs & small molecules</option>\n' +
+                        '                                <option value="signalingandregulatory">Signaling and regulatory</option>\n' +
+                        '                                <option value="genomemaintenance">Genome maintenance</option>\n' +
+                        '                                <option value="cancerpathway">Cancer pathway</option>');
+
+
+                    $('#generalPathwaySelect').append(' <option value="kegg">KEGG (293)</option>\n' +
+                        '                                <option value="panther_pathway">Panther (94)</option>\n' +
+                        '                                <option value="biocarta">BioCarta (236)</option>\n' +
+                        '                                <option value="reactome">REACTOME (1836)</option>\n');
+
+
+                } else {
+                    //alert( this.value );
+                    $('#canonicalPathwaySelect').append(' <option value="generalpathway">General pathway</option>\n' +
+                        '                                <option value="drugssmallmolecules">Drugs & small molecules</option>\n');
+
+                    $('#generalPathwaySelect').append('<option value="kegg">KEGG (293)</option>\n' +
+                        '                                <option value="reactome">REACTOME (1836)</option>\n');
+                }
+            } else if ($('#extendedPathwaysRadio').prop('checked')) {
+                $('#canonicalPathwaySelect').val('');
+                $('#generalPathwaySelect').val('');
+
+                //console.log("没选上");
+                console.log($('#speciesSelection').val());
+                if ($('#speciesSelection').val() == "homo") {
+                    //console.log("人");
+                    $('#extendedPathwaysSelect').empty();
+                    $('#extendedPathwaysSelect').append(' <option value="h.all">Hallmark gene sets (50)</option>\n' +
+                        '                                <option value="c2.cgp">Chemical and genetic perturbations (3302)</option>\n' +
+                        '                                <option value="c4.cgn">Cancer gene neighborhoods (427)</option>\n' +
+                        '                                <option value="c4.cm">Cancer modules (431)</option>\n' +
+                        '                                <option value="c5.bp">GO biological process (7350)</option>\n' +
+                        '                                <option value="c5.cc">GO cellular component (1101)</option>\n' +
+                        '                                <option value="c5.mf">GO molecular function (1645)</option>\n' +
+                        '                                <option value="c6.all">Oncogenic signatures (189)</option>\n' +
+                        '                                <option value="c7.all">Immunologic signatures (4872)</option>');
+                } else {
+                    console.log("小鼠");
+                    $('#extendedPathwaysSelect').empty();
+                    $('#extendedPathwaysSelect').append('<option value="c5.bp">GO Biological Process (4373)</option>\n' +
+                        '                                <option value="c5.cc">GO Cellular Component (741)</option>\n' +
+                        '                                <option value="c5.mf">GO Molecular Function (1498)</option>\n' +
+                        '                                <option value="c6.all">Other (11203)</option>\n');
+                }
+
+            }
+
+
+        });
+
+
+        $('input:radio[name="pathwaySelection"]').on('ifChecked', function(event){
+            if ($(this).val() === "extendedPathways") {
+                $('#canonicalPathwaySelect').val('');
+                $('#generalPathwaySelect').val('');
+
+                //console.log("没选上");
+                console.log($('#speciesSelection').val());
+                if ($('#speciesSelection').val() == "homo") {
+                    //console.log("人");
+                    $('#extendedPathwaysSelect').empty();
+                    $('#extendedPathwaysSelect').append(' <option value="h.all">Hallmark gene sets (50)</option>\n' +
+                        '                                <option value="c2.cgp">Chemical and genetic perturbations (3302)</option>\n' +
+                        '                                <option value="c4.cgn">Cancer gene neighborhoods (427)</option>\n' +
+                        '                                <option value="c4.cm">Cancer modules (431)</option>\n' +
+                        '                                <option value="c5.bp">GO biological process (7350)</option>\n' +
+                        '                                <option value="c5.cc">GO cellular component (1101)</option>\n' +
+                        '                                <option value="c5.mf">GO molecular function (1645)</option>\n' +
+                        '                                <option value="c6.all">Oncogenic signatures (189)</option>\n' +
+                        '                                <option value="c7.all">Immunologic signatures (4872)</option>');
+                } else {
+                    console.log("小鼠");
+                    $('#extendedPathwaysSelect').empty();
+                    $('#extendedPathwaysSelect').append('<option value="c5.bp">GO Biological Process (4373)</option>\n' +
+                        '                                <option value="c5.cc">GO Cellular Component (741)</option>\n' +
+                        '                                <option value="c5.mf">GO Molecular Function (1498)</option>\n' +
+                        '                                <option value="c6.all">Other (11203)</option>\n');
+                }
+            }
+            else if ($(this).val() === "pathwaySelection") {
+                $('#extendedPathwaysSelect').val('');
+                $('#canonicalPathwaySelect').empty();
+                $('#generalPathwaySelect').empty();
+                if ($('#speciesSelection').val() == "homo") {
+                    //alert( this.value );
+                    $('#canonicalPathwaySelect').append(' <option value="generalpathway">General pathway</option>\n' +
+                        '                                <option value="metabolicpathway">Metabolic pathway</option>\n' +
+                        '                                <option value="drugssmallmolecules">Drugs & small molecules</option>\n' +
+                        '                                <option value="signalingandregulatory">Signaling and regulatory</option>\n' +
+                        '                                <option value="genomemaintenance">Genome maintenance</option>\n' +
+                        '                                <option value="cancerpathway">Cancer pathway</option>');
+
+
+                    $('#generalPathwaySelect').append(' <option value="kegg">KEGG (293)</option>\n' +
+                        '                                <option value="panther_pathway">Panther (94)</option>\n' +
+                        '                                <option value="biocarta">BioCarta (236)</option>\n' +
+                        '                                <option value="reactome">REACTOME (1836)</option>\n');
+
+
+                } else {
+                    //alert( this.value );
+                    $('#canonicalPathwaySelect').append(' <option value="generalpathway">General pathway</option>\n' +
+                        '                                <option value="drugssmallmolecules">Drugs & small molecules</option>\n');
+
+                    $('#generalPathwaySelect').append('<option value="kegg">KEGG (293)</option>\n' +
+                        '                                <option value="reactome">REACTOME (1836)</option>\n');
+                }
+            }
+        });
+
+
+        $('#canonicalPathwaySelect').on('change', function () {
+            $('#generalPathwaySelect').empty();
+            if (this.value == "generalpathway" && $("#speciesSelection").val() == "homo") {
+                $('#generalPathwaySelect').append('<option value="kegg">KEGG (293)</option>\n' +
+                    '                                <option value="panther_pathway">Panther (94)</option>\n' +
+                    '                                <option value="biocarta">BioCarta (236)</option>\n' +
+                    '                                <option value="reactome">REACTOME (1836)</option>\n');
+            } else if (this.value == "drugssmallmolecules" && $("#speciesSelection").val() == "homo") {
+                $('#generalPathwaySelect').append('<option value="pharmgkb">PharmGKB (56)</option>\n' +
+                    '                                <option value="smpdb">SMPDB (48568)</option>\n');
+            } else if (this.value == "signalingandregulatory" && $("#speciesSelection").val() == "homo") {
+                $('#generalPathwaySelect').append('<option value="pharmgkb">PharmGKB (56)</option>\n');
+            } else if (this.value == "metabolicpathway" && $("#speciesSelection").val() == "homo") {
+                $('#generalPathwaySelect').append('<option value="humancyc">HumanCyc (127)</option>');
+            } else if (this.value == "cancerpathway" && $("#speciesSelection").val() == "homo") {
+                $('#generalPathwaySelect').append('<option value="acsn2">ACSN2 (102)</option>\n');
+            } else if (this.value == "genomemaintenance" && $("#speciesSelection").val() == "homo") {
+                $('#generalPathwaySelect').append('<option value="rb">RB-Pathways (17)</option>\n');
+            } else if (this.value == "generalpathway" && $("#speciesSelection").val() == "mus") {
+                $('#generalPathwaySelect').append('<option value="kegg">KEGG (292)</option>\n' +
+                    '                                <option value="reactome">REACTOME (1396)</option>\n');
+            } else if (this.value == "drugssmallmolecules" && $("#speciesSelection").val() == "mus") {
+                $('#generalPathwaySelect').append('<option value="smpdb">SMPDB (74)</option>\n');
+            }
+        })
+
+        $("#pascSelect").on("change",function () {
+            $('#logFC_thre').val('');
+            $('#logFC_thre').empty();
+            if ($("#pascSelect").val() !== "gsva") {
+                /**$("#logFC_thre option[value='0.1']").prop("selected",true);**/
+                $("#logFC_thre").append('<option value="0.1">0.1</option>\n'+
+                    '                    <option value="0.15">0.15</option>\n'+
+                    '                    <option value="0.2">0.2</option>\n'+
+                    '                    <option value="0.25">0.25</option>\n');
+            }else if($("#pascSelect").val() === "gsva"){
+                /**$("#logFC_thre option[value='0.25']").prop("selected",true);**/
+                $("#logFC_thre").append('<option value="0.25">0.25</option>\n'+
+                    '                    <option value="0.2">0.2</option>\n'+
+                    '                    <option value="0.15">0.15</option>\n'+
+                    '                    <option value="0.1">0.1</option>\n');
+            }
+            console.log($('#logFC_thre').val())
+        })
+    })
+
+
+
+</script>
+
+<!-- Example link click -->
+<script>
+    var example1="example.csv";
+    var example_celltype = "cell_type.csv";
+    var example2="melanoma_malignant.csv";
+    var example3="expression.csv";// TODO example3的名字才应该是cell_type.csv吧？
+    var example4="pathway.gmt";
+    var loadExample1=0;//如果用户load example了，怎么拼接参数？用loadExample变量记录
+    var loadExample2=0;
+    var loadExample3=0;
+    var loadExample4=0;
+    $(document).ready(function()
+    {
+        $("#example1").on("click",function()
+        {
+            $("#normalizationSelect option[value='none']").prop("selected",true);
+
+            $("#clustering").hide();
+            $("#clusteringHr").hide();
+            $("#example").val("example1");
+            $('#canonicalPathwayRadio').iCheck("check");
+
+            if(!$('#CountRadio').is(':checked'))
+            {
+                $("#CountRadio").prop("checked", true);
+
+                $("#TpmOrCpmOrFpkmRadio").prop("checked", false);
+
+                var iradio_flat_blue1 = $(".iradio_flat-blue")[0];
+                var iradio_flat_blue2 = $(".iradio_flat-blue")[1];
+                $(iradio_flat_blue1).attr("class","iradio_flat-blue checked");
+                $(iradio_flat_blue2).attr("class","iradio_flat-blue");
+
+
+                $("#tpmOrCpmOrFpkmInput").fileinput("clear");
+                $("#tpmOrCpmOrFpkmInput").fileinput("disable");
+                $("#TpmOrCpmOrFpkmRadio").focus();
+            }
+            if (!$("#cellTypes").is(':checked')){
+                //如果没有被选中则选中它
+                $("#cellTypes").prop("checked", true);
+
+                var icheckbox_flat_blue1 = $(".icheckbox_flat-blue")[0];
+                $(icheckbox_flat_blue1).attr("class","icheckbox_flat-blue checked");
+
+                //使输入框可以使用
+                $('#inputDiv3').remove();
+                $("#inputContainer3").append('<div id="inputDiv3">\n' +
+                    '                        <div class="file-loading">\n' +
+                    '                            <input id="cellTypeLabelInput" onclick="changeCell()" name="cellType_file" type="file" data-show-preview="false"\n' +
+                    '                                   data-theme="fas">\n' +
+                    '                        </div>\n' +
+                    '                    </div>');
+                $("#cellTypeLabelInput").fileinput({
+                    showUpload:false,
+                    showCancel: false,
+                    browseClass    : "btn btn-info",
+                    browseLabel    : "Browse ...",
+
+                    initialCaption:example_celltype,
+                    // uploadUrl: "/job_server/upload",
+                    // uploadLabel: "Upload",
+                    uploadExtraData: function() {
+                        return {
+                            jobId:jobId
+                        };
+                    },
+                }).on('filebatchpreupload', function(event, data, id, index) {
+                    $('#kv-success-3').html('<h4>Upload Status</h4><ul></ul>').hide();
+                }).on('fileuploaded', function(event, data, id, index) {
+                    scRnaSeqProFileName=data.files[0].name;
+                    scRnaSeqProFileUploaded=1;
+                });
+            }else{
+                //如果被选中
+                $('#inputDiv3').remove();
+                $("#inputContainer3").append('<div id="inputDiv3">\n' +
+                    '                        <div class="file-loading">\n' +
+                    '                            <input id="cellTypeLabelInput" onclick="changeCell()" name="cellType_file" type="file" data-show-preview="false"\n' +
+                    '                                   data-theme="fas">\n' +
+                    '                        </div>\n' +
+                    '                    </div>');
+                $("#cellTypeLabelInput").fileinput({
+                    showUpload:false,
+                    showCancel: false,
+                    browseClass    : "btn btn-info",
+                    browseLabel    : "Browse ...",
+
+                    initialCaption:example_celltype,
+                    // uploadUrl: "/job_server/upload",
+                    // uploadLabel: "Upload",
+                    uploadExtraData: function() {
+                        return {
+                            jobId:jobId
+                        };
+                    },
+                }).on('filebatchpreupload', function(event, data, id, index) {
+                    $('#kv-success-3').html('<h4>Upload Status</h4><ul></ul>').hide();
+                }).on('fileuploaded', function(event, data, id, index) {
+                    scRnaSeqProFileName=data.files[0].name;
+                    scRnaSeqProFileUploaded=1;
+                });
+            }
+
+            if($('#inputDiv1').length)
+            {
+                $('#inputDiv1').remove();
+
+                $("#inputContainer1").append('<div id="inputDiv1">\n' +
+                    '                        <div class="file-loading">\n' +
+                    '                            <input id="scRnaSeqProfileInput"  onclick="changFile()" name="f_file" type="file" data-show-preview="false"\n' +
+                    '                                   data-theme="fas">\n' +
+                    '                        </div>\n' +
+                    '                    </div>');
+                $("#scRnaSeqProfileInput").fileinput({
+                    showUpload:false,
+                    showCancel: false,
+                    browseClass    : "btn btn-info",
+                    browseLabel    : "Browse ...",
+
+                    initialCaption:example1,
+                    // uploadUrl: "/job_server/upload",
+                    // uploadLabel: "Upload",
+                    uploadExtraData: function() {
+                        return {
+                            jobId:jobId
+                        };
+                    },
+                }).on('filebatchpreupload', function(event, data, id, index) {
+                    $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
+                }).on('fileuploaded', function(event, data, id, index) {
+                    scRnaSeqProFileName=data.files[0].name;
+                    scRnaSeqProFileUploaded=1;
+
+                });
+
+                loadExample1=1;
+            }
+
+            //判断missing是否被选中
+            if (!$("#missingValuesImputationCheckbox").is(':checked')){
+                $("#missingValuesImputationCheckbox").prop("checked",true);
+                $("#missingValuesImputationCheckbox").iCheck({
+                    checkboxClass: "icheckbox_flat-blue",
+                    radioClass   : "iradio_flat-blue"
+                });
+            }
+        });
+
+        $("#example2").on("click",function()
+        {
+            $("#clustering").show();
+            $("#clusteringHr").show();
+            $("#example").val("example2");
+
+            $('#extendedPathwaysRadio').iCheck("check");
+            //$('#canonicalPathwayRadio').iCheck("uncheck");
+
+            if(!$('#TpmOrCpmOrFpkmRadio').is(':checked'))
+            {
+                $("#TpmOrCpmOrFpkmRadio").prop("checked", true);
+
+                $("#CountRadio").prop("checked", false);
+
+                var iradio_flat_blue1 = $(".iradio_flat-blue")[0];
+                var iradio_flat_blue2 = $(".iradio_flat-blue")[1];
+                $(iradio_flat_blue1).attr("class","iradio_flat-blue");
+                $(iradio_flat_blue2).attr("class","iradio_flat-blue checked");
+
+                $("#tpmOrCpmOrFpkmInput").fileinput("enable");
+                $("#scRnaSeqProfileInput").fileinput("clear");
+                $("#scRnaSeqProfileInput").fileinput("disable");
+                $("#TpmOrCpmOrFpkmRadio").focus();
+            }
+
+
+            if ($("#cellTypes").is(':checked')){
+                //如果没有被选中则选中它
+                $("#cellTypes").prop("checked", false);
+                //添加样式
+                var icheckbox_flat_blue1 = $(".icheckbox_flat-blue")[0];
+                $(icheckbox_flat_blue1).attr("class","icheckbox_flat-blue");
+
+                $("#cellTypeLabelInput").fileinput("clear");
+                $("#cellTypeLabelInput").fileinput("disable");
+                $("#cellTypes").focus();
+
+            }
+
+
+
+            if($('#inputDiv2').length)
+            {
+                $('#inputDiv2').remove();
+
+                $("#inputContainer2").append('<div id="inputDiv2">\n' +
+                    '                        <div class="file-loading">\n' +
+                    '                            <input id="tpmOrCpmOrFpkmInput" onclick="changTpm()" name="f_file" type="file" data-show-preview="false"\n' +
+                    '                                   data-theme="fas">\n' +
+                    '                        </div>\n' +
+                    '                    </div>');
+                $("#tpmOrCpmOrFpkmInput").fileinput({
+                    showUpload:false,
+                    showCancel: false,
+                    browseClass    : "btn btn-info",
+                    browseLabel    : "Browse ...",
+
+                    initialCaption:example2,
+                    uploadExtraData: function() {
+                        return {
+                            jobId:jobId
+                        };
+                    },
+                }).on('filebatchpreupload', function(event, data, id, index) {
+                    $('#kv-success-2').html('<h4>Upload Status</h4><ul></ul>').hide();
+                }).on('fileuploaded', function(event, data, id, index) {
+                    tpmOrCpmOrFpkmFileName=data.files[0].name;
+                    tpmOrCpmOrFpkmFileUploaded=1;
+
+                });
+
+                loadExample2=1;
+            }
+
+            //判断missing是否被选中
+
+            $("#missingValuesImputationCheckbox").prop("checked",false);
+            var icheckbox_flat_blue3 = $(".icheckbox_flat-blue")[2];
+            $(icheckbox_flat_blue3).attr("class","icheckbox_flat-blue");
+
+            //methods选中kmeans
+
+            $("#clusSelect3").val("0.3");
+
+        });
+
+
+    });
+</script>
+
+<!-- fileinput -->
+<script>
+    var scRnaSeqProFileName="";
+    var scRnaSeqProFileUploaded=0;
+    var tpmOrCpmOrFpkmFileName="";
+    var tpmOrCpmOrFpkmFileUploaded=0;
+    var cellTypesFileName="";
+    var cellTypesFileUploaded=0;
+    var userDefinedPathwayfileName="";
+    var userDefinedPathwayfileUploaded=0;
+    var jobId=0;
+    $(document).ready(function()
+    {
+        $("#scRnaSeqProfileInput").fileinput({
+            uploadAsync: true,
+            showPreview: false,
+            showUpload:false,
+            showCancel: false,
+
+            browseClass    : "btn btn-info",
+            browseLabel    : "Browse ...",
+            uploadExtraData: function() {
+                return {
+                    //ip:ip,
+                    jobId:jobId
+                };
+            }}).on('filebatchpreupload', function(event, data, id, index) {
+            $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
+        }).on('fileuploaded', function(event, data, id, index) {
+            scRnaSeqProFileName=data.files[0].name;
+            scRnaSeqProFileUploaded=1;
+        });
+
+
+        $("#tpmOrCpmOrFpkmInput").fileinput({
+            uploadAsync: true,
+            showPreview: false,
+            showUpload:false,
+            showCancel: false,
+
+            browseClass    : "btn btn-info",
+            browseLabel    : "Browse ...",
+
+            //allowedFileExtensions: ['jpg', 'png', 'gif'],
+
+            // uploadUrl: "/fileUpload/upload",
+            //uploadClass: "btn btn-info",
+            // uploadLabel: "Upload",
+            //uploadIcon : "<i class=\"glyphicon glyphicon-upload\"></i> "
+            uploadExtraData: function() {
+                return {
+                    //ip:ip,
+                    jobId:jobId
+                };
+            },
+        }).on('filebatchpreupload', function(event, data, id, index) {
+            $('#kv-success-2').html('<h4>Upload Status</h4><ul></ul>').hide();
+        }).on('fileuploaded', function(event, data, id, index) {
+            tpmOrCpmOrFpkmFileName=data.files[0].name;
+            tpmOrCpmOrFpkmFileUploaded=1;
+            /*var fname = data.files[index].name,
+                out = '<li>' + 'Uploaded file '  +  fname + ' successfully.' + '</li>';
+            $('#kv-success-2 ul').append(out);
+            $('#kv-success-2').fadeIn('slow');*/
+        });
+
+        $("#cellTypeLabelInput").fileinput({
+            uploadAsync: true,
+            showPreview: false,
+            showUpload:false,
+            showCancel: false,
+
+            browseClass    : "btn btn-info",
+            browseLabel    : "Browse ...",
+
+            //allowedFileExtensions: ['jpg', 'png', 'gif'],
+
+            // uploadUrl: "/fileUpload/upload",
+            //uploadClass: "btn btn-info",
+            // uploadLabel: "Upload",
+            //uploadIcon : "<i class=\"glyphicon glyphicon-upload\"></i> "
+            uploadExtraData: function() {
+                return {
+                    //ip:ip,
+                    jobId:jobId
+                };
+            },
+        }).on('filebatchpreupload', function(event, data, id, index) {
+            /*$('#cellTypeLabelInputSuccess').html('<h4>Upload Status</h4><ul></ul>').hide();*/
+        }).on('fileuploaded', function(event, data, id, index) {
+            cellTypesFileName=data.files[0].name;
+            cellTypesFileUploaded=1;
+
+            /*var fname = data.files[index].name,
+                out = '<li>' + 'Uploaded file '  +  fname + ' successfully.' + '</li>';
+            $('#cellTypeLabelInputSuccess ul').append(out);
+            $('#cellTypeLabelInputSuccess').fadeIn('slow');*/
+        });
+
+        $("#userDefinedPathwayInput").fileinput({
+            uploadAsync: true,
+            showPreview: false,
+            showUpload:false,
+            showCancel: false,
+
+            browseClass    : "btn btn-info",
+            browseLabel    : "Browse ...",
+
+            //allowedFileExtensions: ['jpg', 'png', 'gif'],
+
+            // uploadUrl: "/fileUpload/upload",
+            //uploadClass: "btn btn-info",
+            // uploadLabel: "Upload",
+            //uploadIcon : "<i class=\"glyphicon glyphicon-upload\"></i> "
+            uploadExtraData: function() {
+                return {
+                    //ip:ip,
+                    jobId:jobId
+                };
+            },
+        }).on('filebatchpreupload', function(event, data, id, index) {
+            $('#kv-success-3').html('<h4>Upload Status</h4><ul></ul>').hide();
+        }).on('fileuploaded', function(event, data, id, index) {
+            userDefinedPathwayfileName=data.files[0].name;
+            userDefinedPathwayfileUploaded=1;
+            /* var fname = data.files[index].name,
+                 out = '<li>' + 'Uploaded file '  +  fname + ' successfully.' + '</li>';
+             $('#kv-success-3 ul').append(out);
+             $('#kv-success-3').fadeIn('slow');*/
+        });
+
+        $("#tpmOrCpmOrFpkmInput").fileinput("disable");//实测disable不能在标签上加，不然remove按钮会失效
+        $("#cellTypeLabelInput").fileinput("disable");
+        $("#userDefinedPathwayInput").fileinput("disable");
+    });
+</script>
+
+<!-- iCheck -->
+<script>
+    $(document).ready(function()
+    {
+        $("#extendedPathwaysSelect").val("");
+
+
+        $("input").iCheck({
+            checkboxClass: "icheckbox_flat-blue",
+            radioClass   : "iradio_flat-blue"
+        })
+            .on("ifChecked", function(event)
+            {
+                //alert(event.type + ' callback ');
+                //alert(event.type + ' callback '+$(this).val());
+                if($(this).val() == "count")
+                {
+                    $("#scRnaSeqProfileInput").fileinput("enable");
+                    $("#tpmOrCpmOrFpkmInput").fileinput("clear");
+                    $("#tpmOrCpmOrFpkmInput").fileinput("disable");
+                    $("#TpmOrCpmOrFpkmRadio").focus();
+
+                    $('#normalizationSelect').append("<option value='scran'>Size factor (scran) </option>");
+                    loadExample1=0;
+                }
+                else if($(this).val() == "TPM")
+                {
+                    $("#tpmOrCpmOrFpkmInput").fileinput("enable");
+                    $("#scRnaSeqProfileInput").fileinput("clear");
+                    $("#scRnaSeqProfileInput").fileinput("disable");
+                    $("#TpmOrCpmOrFpkmRadio").focus();
+
+                    $("#normalizationSelect option[value='scran']").remove();
+                    loadExample2=0;
+                }
+
+                if($(this).val() == "cellTypes")
+                {
+                    $("#cellTypeLabelInput").fileinput("enable");//cellTypeLabelInput
+                    $("#clustering").attr("style","display:none;");
+                }
+
+                if($(this).val() == "canonicalPathway")
+                {
+                    //alert($(this).val());
+                    /*$("#userDefinedPathwayInput").fileinput("clear");
+                    $("#userDefinedPathwayInput").fileinput("disable");*/
+                    $("#extendedPathwaysSelect").val("");
+                    $("#extendedPathwaysSelect").attr("disabled", true);
+                    $("#canonicalPathwaySelect").attr("disabled", false);
+                    $("#canonicalPathwaySelect").val("generalpathway");
+                    $("#generalPathwaySelect").attr("disabled", false);
+                    $("#generalPathwaySelect").val("kegg")
+                    $("#canonicalPathway").focus();
+                    $("#generalPathwaySelect").focus();
+                }
+                else if($(this).val() == "extendedPathways")
+                {
+                    //alert($(this).val());
+                    /*$("#userDefinedPathwayInput").fileinput("clear");
+                    $("#userDefinedPathwayInput").fileinput("disable");*/
+                    $("#canonicalPathwaySelect").attr("disabled", true);
+                    $("#canonicalPathwaySelect").val("");
+                    $("#generalPathwaySelect").attr("disabled", true);
+                    $("#generalPathwaySelect").val("");
+                    $("#extendedPathwaysSelect").attr("disabled", false);
+                    if($("#speciesSelection").val()=="homo")
+                    {
+                        $("#extendedPathwaysSelect").val("h.all");
+                    }
+                    else
+                    {
+                        $("#extendedPathwaysSelect").val("c5.bp");
+                    }
+
+                    $("#extendedPathways").focus();
+                }
+
+                if($(this).val() == "userDefinedPathway")
+                {
+                    $("#userDefinedPathwayInput").fileinput("enable");
+                }
+                /*else if($(this).val() == "bedData")
+                {
+                    //alert($(this).val());
+                    $("#userDefinedPathwayInput").fileinput("disable");
+                    $("#bedDataTextarea").attr("disabled", false);
+                }*/
+            }).on("ifUnchecked", function(event){
+            if($(this).val() == "cellTypes")
+            {
+                $("#clustering").attr("style","display:flex;");
+                $("#cellTypeLabelInput").fileinput("clear");
+                $("#cellTypeLabelInput").fileinput("disable");
+                $("#cellTypes").focus();
+                loadExample3=0;
+            }
+            if($(this).val() == "TPM")
+            {
+                console.log("TPM");
+                $("#scRnaSeqProfileInput").fileinput("enable");
+                $("#tpmOrCpmOrFpkmInput").fileinput("clear");
+                $("#tpmOrCpmOrFpkmInput").fileinput("disable");
+                $("#TpmOrCpmOrFpkmRadio").focus();
+                loadExample1=0;
+            }
+            else  if($(this).val() == "count")
+            {
+                // console.log("count");
+                $("#tpmOrCpmOrFpkmInput").fileinput("enable");
+                $("#scRnaSeqProfileInput").fileinput("clear");
+                $("#scRnaSeqProfileInput").fileinput("disable");
+                $("#TpmOrCpmOrFpkmRadio").focus();
+                loadExample2=0;
+            }
+
+
+
+            if($(this).val() == "userDefinedPathway")
+            {
+                $("#userDefinedPathwayInput").fileinput("clear");
+                $("#userDefinedPathwayInput").fileinput("disable");
+                $("#cellTypes").focus();
+                loadExample4=0;
+            }
+
+        });
+
+
+    });
+
+</script>
+
+<script>
+    $(document).ready(function(){
+
+
+        $('#collapseOne').on('hidden.bs.collapse', function () {
+            $('#moreSettingsIcon').attr("class","fa fa-angle-right");
+        });
+
+        $('#collapseOne').on('show.bs.collapse', function () {
+            $('#moreSettingsIcon').attr("class","fa fa-angle-down");
+
+            if($('#cellTypes').prop('checked'))
+            {
+                $("#clustering").hide();
+                $("#clusteringHr").hide();
+
+                // if($("#cellTypeLabelInput").fileinput('getFilesCount')>0 || loadExample3==1)
+                // {
+                //     //alert($("#cellTypeLabelInput").fileinput('getFilesCount'));
+                //     //隐藏Cell clustering
+                //     $("#clustering").hide();
+                //     $("#clusteringHr").hide();
+                // }
+                // else
+                // {
+                //     $("#clustering").show();
+                //     $("#clusteringHr").show();
+                // }
+            }
+            else
+            {
+                //显示Cell clustering
+                $("#clustering").show();
+                $("#clusteringHr").show();
+            }
+        });
+
+
+        $('#clusSelect1').on('change', function() {
+            //alert( this.value );
+            if(this.value!='seurat')
+            {
+                $("#dims").length ? $("#dims").remove() : null;
+                $("#resolution").length ? $("#resolution").remove() : null;
+                if(this.value!='dbscan') {
+                    $("#k_cluster").length?$("#k_cluster").remove():null;
+                    if (!$("#k_cluster").length) {
+                        $("#clustering").append('<div class="col-sm-4" id="k_cluster">\n' +
+                            '                                <input style="width:80px;height:35px;margin-top: 35px;text-align: center;" type="text" id="k_clusterInput"\n' +
+                            '                                       name="k_cluster" value="5"> <label style="font-size: 18px">number of clusters</label>\n' +
+                            '                            </div>');
+
+                        $("#k_clusterInput").focusout(function () {
+                            //alert($("#k_clusterInput").val());
+                            var i = parseInt($("#k_clusterInput").val());
+                            //alert(i);
+                            if (isNaN(i)) {
+                                $("#k_clusterInput").val(5);
+                            } else if (i < 1) {
+                                $("#k_clusterInput").val(5);
+                            } else {
+                                $("#k_clusterInput").val(i);
+                            }
+                        });
+                    }
+                }
+                else{
+                    $("#k_cluster").length?$("#k_cluster").remove():null;
+                    $("#clustering").append('<div class="col-sm-6" id="k_cluster">\n' +
+                        '                                <input style="width:80px;height:35px;margin-top: 35px;text-align: center;" type="text" id="k_clusterInput"\n' +
+                        '                                       name="min_pts" value="5"> <label style="font-size: 18px">number of minimum points in the eps region</label>\n' +
+                        '                            </div>');
+
+                    $("#k_clusterInput").focusout(function() {
+                        //alert($("#k_clusterInput").val());
+                        var i=parseInt($("#k_clusterInput").val());
+                        //alert(i);
+                        if(isNaN(i))
+                        {
+                            $("#k_clusterInput").val(5);
+                        }
+                        else if(i<1)
+                        {
+                            $("#k_clusterInput").val(5);
+                        }
+                        else
+                        {
+                            $("#k_clusterInput").val(i);
+                        }
+                    });
+                }
+
+            }
+            else
+            {
+                $("#k_cluster").length?$("#k_cluster").remove():null;
+                if(!$("#dims").length && !$("#resolution").length)
+                {
+                    $("#clustering").append('<div class="col-sm-2" id="dims">\n' +
+                        '                                <label>dims:</label>\n' +
+                        '                                <input id="clusSelect2" name="seurat_dims" value="15" class="form-control">\n' +
+                        '                            </div>\n' +
+                        '                            <div class="col-sm-2" id="resolution">\n' +
+                        '                                <label>resolution:</label>\n' +
+                        '                                <input id="clusSelect3" name="seurat_resolution" value="0.5" class="form-control">\n' +
+                        '                            </div>');
+                }
+            }
+        });
+
+        $("#minCells").focusout(function() {
+            var i=parseInt($("#minCells").val());
+            //alert(i);
+            if(isNaN(i))
+            {
+                $("#minCells").val(2);
+            }
+            else if(i<0 || i>20)
+            {
+                $("#minCells").val(2);
+            }
+            else
+            {
+                $("#minCells").val(i);
+            }
+        });
+
+        $("#minGenes").focusout(function() {
+            var i=parseInt($("#minGenes").val());
+            //alert(i);
+            if(isNaN(i))
+            {
+                $("#minGenes").val(200);
+            }
+            else if(i<0 || i>500)
+            {
+                $("#minGenes").val(200);
+            }
+            else
+            {
+                $("#minGenes").val(i);
+            }
+        });
+    });
+</script>
+
+<!-- run button click -->
+<script>
+    // 对Date的扩展，将 Date 转化为指定格式的String
+    // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+    // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+    // 例子：
+    // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+    // (new Date()).Format("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+    Date.prototype.Format = function (fmt){ // author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, // 月份
+            "d+": this.getDate(), // 日
+            "h+": this.getHours(), // 小时
+            "m+": this.getMinutes(), // 分
+            "s+": this.getSeconds(), // 秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+            "S": this.getMilliseconds() // 毫秒
+        };
+        if (/(y+)/.test(fmt))
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+    //拼接参数，并跳转到Job run页面
+    function redirectToJobRun()
+    {
+        let species=$("#speciesSelection").val();
+        let email=$('#email').val().trim();
+
+        let data_type="";
+        let f="";
+        if($('#CountRadio').prop('checked'))
+        {
+            data_type="count";
+            if(loadExample1==1)
+            {
+                f=example1;
+            }
+            else
+            {
+                f=scRnaSeqProFileName;
+            }
+        }
+        else if($('#TpmOrCpmOrFpkmRadio').prop('checked'))
+        {
+            data_type="TPM";
+            if(loadExample2==1)
+            {
+                f=example2;
+            }
+            else
+            {
+                f=tpmOrCpmOrFpkmFileName;
+            }
+        }
+
+        let cellType="";
+        if($('#userDefinedPathwayCheckbox').prop('checked'))
+        {
+            if(loadExample3==1)
+            {
+                cellType=example3;
+            }
+            else
+            {
+                cellType = cellTypesFileName;
+            }
+        }
+
+        let pathway_database="";
+        if($('#canonicalPathwayRadio').prop('checked'))
+        {
+            pathway_database=$("#canonicalPathwaySelect").val();
+        }
+        else if($('#functionalGenesSetRadio').prop('checked'))
+        {
+            pathway_database=$("#functionalGenesSetSelect").val();
+        }
+
+        let user_pathway="";
+        if($('#userDefinedPathwayCheckbox').prop('checked'))
+        {
+            if(loadExample4==1)
+            {
+                user_pathway=example4;
+            }
+            else
+            {
+                user_pathway = userDefinedPathwayfileName;
+            }
+        }
+
+        let normalization=$("#normalizationSelect").val();
+        let minCells=$("#minCells").val();
+        let minFeatures=$("#minGenes").val();
+        let imputation="";
+        if($('#missingValuesImputationCheckbox').prop('checked'))
+        {
+            imputation="TRUE";
+        }
+        else
+        {
+            imputation="FALSE";
+        }
+        let pasMethod=$("#pascSelect").val();
+        let clusterMethod=$('#clusSelect1').val();
+        clusterMethod="seurat";// TODO clusterMethod的值暂时设置为seurat
+        let seuratDims="";
+        let seuratResolution="";
+        let kCluster="";
+        if(clusterMethod=="seurat")
+        {
+            seuratDims=$('#clusSelect2').val();
+            seuratResolution=$('#clusSelect3').val();
+        }
+        else
+        {
+            kCluster=("#k_clusterInput").val();
+        }
+
+        let _Method=$('#markerPathwayIdentificationSelect').val();
+        let logFC=$('#logFC_thre').val();
+
+
+        //alert("All files uploaded!");
+        let url="http://sctpa.bio-data.cn/jobRun.php?"+"jobId="+jobId+
+            "&--species="+species+
+            "&--data_type="+data_type+
+            "&-f="+f+
+            "&--cellType="+cellType+//这个
+            "&--pathway_database="+pathway_database+
+            "&--user_pathway="+user_pathway+//和这个因为是可选的，后端应该判断一下是否有值
+            "&--normalization="+normalization+
+            "&--min_cells="+minCells+
+            "&--min_features="+minFeatures+
+            "&--imputation="+imputation+
+            "&--pas_method="+pasMethod+
+            "&--cluster_method="+clusterMethod+// TODO 根据clusterMethod不同的值，以下3个参数后端应该判断一下不同的情况
+            "&--seurat_dims="+seuratDims+//
+            "&--seurat_resolution="+seuratResolution+//
+            "&--k_cluster="+kCluster+//
+            "&--marker_method="+markerMethod+
+            "&--logFC_thre="+logFC+
+            "&--min_pct="+$('#min_pct').val()+
+            "&email="+email;
+        //后端还要判断example的情况，当-f=example1或example2时，说明后端run example job即可，此时还要判断一下
+        //--cellType是否有值，--user_pathway是否有值，它们都可能是""
+        alert(url);
+        //window.open(url,"_blank");
+        //alert(url);
+        window.open(url,"_self");
+    }
+
+    var waitScRnaSeqProFileUpload=0;
+    var waitTpmOrCpmOrFpkmUpload=0;
+    var waitKnownCellTypesFileUpload=0;
+    var waitUserDefinedPathwayfileUpload=0;
+    var allFilesUploaded=0;
+    //var runButtonClickTimes=0;
+    var canceled=0;
+    $(document).ready(function()
+    {
+        $("#run").on("click", function()
+        {
+            $(this).html('Uploading...');
+            $(this).attr("disabled","true");
+
+            $("#reset").html('Cancel');
+
+            //清理变量，以防是第二次点击Run按钮
+            scRnaSeqProFileName="";
+            scRnaSeqProFileUploaded=0;
+            tpmOrCpmOrFpkmFileName="";
+            tpmOrCpmOrFpkmFileUploaded=0;
+
+            cellTypesFileName="";
+            cellTypesFileUploaded=0;
+            userDefinedPathwayfileName="";
+            userDefinedPathwayfileUploaded=0;
+            jobId=0;
+
+            waitScRnaSeqProFileUpload=0;
+            waitTpmOrCpmOrFpkmUpload=0;
+            waitKnownCellTypesFileUpload=0;
+            waitUserDefinedPathwayfileUpload=0;
+            allFilesUploaded=0;
+
+            /*
+             4个loadExample变量的状态：
+             当单选按钮不选中时
+             loadExample1=0;
+             loadExample2=0;
+             当复选按钮不选中时
+             loadExample3=0;
+             loadExample4=0;
+
+             当单选按钮选中时
+                  点击了example1对应的load example data，则loadExample1=1;
+                  点击了example2对应的load example data，则loadExample2=1;
+             当复选按钮选中时
+                  点击了example3对应的load example data，则loadExample3=1;
+                  点击了example4对应的load example data，则loadExample4=1;
+
+              当用户Browse了文件后，对应的loadExample变量赋值为0;
+
+              如果Count和TPM/CPM/FPKM两个框没有Browse文件，且loadExample1==0和loadExample2==0，就提示要上传scRNA-Seq profile文件。
+            */
+
+            //生成jobId
+            let time = new Date().Format("yyyyMMddhhmmss");
+            if(loadExample1 || loadExample2)
+            {
+                jobId="example1";
+            }
+
+//                              let waitScRnaSeqProFileUpload=0;
+            if($("#scRnaSeqProfileInput").fileinput('getFilesCount')>0)
+            {
+                loadExample1=0;
+                if($('#email').val().trim().length>0)
+                {
+                    jobId=time+"_"+$('#email').val().trim();
+                }
+                else
+                {
+                    jobId=time;
+                }
+                waitScRnaSeqProFileUpload=1;
+                $('#scRnaSeqProfileInput').fileinput('upload');
+            }
+            else if($("#tpmOrCpmOrFpkmInput").fileinput('getFilesCount')>0)
+            {
+                loadExample2=0;
+                if($('#email').val().trim().length>0)
+                {
+                    jobId=time+"_"+$('#email').val().trim();
+                }
+                else
+                {
+                    jobId=time;
+                }
+                waitTpmOrCpmOrFpkmUpload=1;
+                $("#tpmOrCpmOrFpkmInput").fileinput('upload');
+            }
+            else if(loadExample1 || loadExample2)
+            {
+
+            }
+            else
+            {
+                /*if(runButtonClickTimes==0)
+                {*/
+                alert("Please upload scRNA-Seq profile.");
+                $(this).html('&nbsp;&nbsp;Run&nbsp;&nbsp;');
+                $("#run").attr("disabled",false);
+                $("#reset").html('Reset');
+                //runButtonClickTimes++;
+                /*}
+                else
+                {
+                    alert('Please click "Browse..." button and reupload all files.');
+                    $(this).html('&nbsp;&nbsp;Run&nbsp;&nbsp;');
+                    $("#run").attr("disabled",false);
+                    $("#reset").html('Reset');
+                }*/
+
+                return;
+            }
+
+//                              let waitKnownCellTypesFileUpload=0;
+            if($("#cellTypeLabelInput").fileinput('getFilesCount')>0)
+            {
+                loadExample3=0;
+                waitKnownCellTypesFileUpload=1;
+                $('#cellTypeLabelInput').fileinput('upload');
+            }
+            else if(loadExample3)
+            {
+
+            }
+
+//                              let waitUserDefinedPathwayfileUpload=0;
+            if($("#userDefinedPathwayInput").fileinput('getFilesCount')>0)
+            {
+                loadExample4=0;
+                waitUserDefinedPathwayfileUpload=1;
+                $('#userDefinedPathwayInput').fileinput('upload');
+            }
+            else if(loadExample4)
+            {
+
+            }
+
+            //var allFilesUploaded=0;
+
+            (function(){
+                if((waitScRnaSeqProFileUpload==1)&&(scRnaSeqProFileUploaded==0))
+                {
+
+                }
+                else if((waitTpmOrCpmOrFpkmUpload==1)&&(tpmOrCpmOrFpkmFileUploaded==0))
+                {
+
+                }
+                else if((waitKnownCellTypesFileUpload==1)&&(cellTypesFileUploaded==0))
+                {
+
+                }
+                else if((waitUserDefinedPathwayfileUpload==1)&&(userDefinedPathwayfileUploaded==0))
+                {
+
+                }
+                else
+                {
+                    allFilesUploaded=1;
+                }
+
+                if(allFilesUploaded==1)
+                {
+                    redirectToJobRun();
+                    return;
+                }
+
+                if(canceled)
+                {
+                    //清理全局变量的值
+                    scRnaSeqProFileName="";
+                    scRnaSeqProFileUploaded=0;
+                    tpmOrCpmOrFpkmFileName="";
+                    tpmOrCpmOrFpkmFileUploaded=0;
+
+                    cellTypesFileName="";
+                    cellTypesFileUploaded=0;
+                    userDefinedPathwayfileName="";
+                    userDefinedPathwayfileUploaded=0;
+                    jobId="";
+
+                    waitScRnaSeqProFileUpload=0;
+                    waitTpmOrCpmOrFpkmUpload=0;
+                    waitKnownCellTypesFileUpload=0;
+                    waitUserDefinedPathwayfileUpload=0;
+                    allFilesUploaded=0;
+
+                    canceled=0;
+
+                    //$("#example1").focus();
+
+                    return;
+                }
+
+                window.setTimeout(arguments.callee,2000);
+            })();
+        });
+
+        $("#reset").on("click", function()
+        {
+            if($("#reset").text()=='Cancel')
+            {
+                if(waitKnownCellTypesFileUpload)
+                {
+                    $('#cellTypeLabelInput').fileinput('cancel');
+                }
+
+                if(waitUserDefinedPathwayfileUpload)
+                {
+                    $('#userDefinedPathwayInput').fileinput('cancel');
+                }
+
+                if(waitScRnaSeqProFileUpload)
+                {
+                    $('#scRnaSeqProfileInput').fileinput('cancel');
+                }
+
+                if(waitTpmOrCpmOrFpkmUpload)
+                {
+                    $('#tpmOrCpmOrFpkmInput').fileinput('cancel');
+                }
+
+                canceled=1;
+
+                $("#run").html('&nbsp;&nbsp;Run&nbsp;&nbsp;');
+                $("#run").attr("disabled",false);
+
+                $("#reset").html('Reset');
+
+                //$("#inputDiv2").focus();
+                //$("#example1").focus();
+            }
+            else
+            {
+
+            }
+        });
+
+    });
+</script>
+
+<!-- TODO reset button click -->
+<script>
+    $(document).ready(function()
+    {
+        $("#reset").on("click", function()
+        {
+            $("#example1").focus();
+        });
+    });
+</script>
+
+<script>
+    $(function() { $("[data-toggle='tooltip']").tooltip(); });
+</script>
+</html>
