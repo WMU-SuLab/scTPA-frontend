@@ -43,6 +43,7 @@
 
 .file-input, .file-loading:before, .btn-file, .file-caption, .file-preview, .krajee-default.file-preview-frame, .krajee-default .file-thumbnail-footer, .file-zoom-dialog .modal-dialog {
     position: relative;
+    margin-top: 50px!important;
 }
 
 .file-error-message pre, .file-error-message ul, .krajee-default .file-actions, .krajee-default .file-other-error {
@@ -547,4 +548,16 @@
 
 .file-preview-initial.sortable-chosen {
     background-color: #d9edf7;
+}
+
+.fade:not(.show){
+    opacity: 1!important;
+}
+.close{
+    position:relative!important;
+    right:-250px!important;
+}
+.modal-title{
+    position:relative!important;
+    left:-110px!important;
 }
